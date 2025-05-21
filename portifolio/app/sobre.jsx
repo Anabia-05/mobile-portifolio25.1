@@ -1,9 +1,11 @@
-// app/sobre.js
-import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';import { Link } from 'expo-router';
+import { View, Text, Image, StyleSheet, SafeAreaView, Linking, TouchableOpacity } from 'react-native';import { Link } from 'expo-router';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
-
+ 
 export default function SobreMim() {
-  
+  const handleOpenURL = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir link:", err));
+  };
+ 
   return (
     <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
@@ -13,33 +15,52 @@ export default function SobreMim() {
         </Link>
         <Text style={styles.title}>Sobre Mim</Text>
       </View>
-
+ 
       <View style={styles.content}>
-        <Image 
-          source={require('@/assets/eu2.0.jpg')} 
+        <Image
+          source={require('@/assets/eu2.0.jpg')}
           style={styles.profileImage}
         />
-        
+       
         <Text style={styles.name}>Ana Beatriz Romero</Text>
         <Text style={styles.role}>Estudante de Ciência da Computação</Text>
-
+ 
         <View style={styles.infoBox}>
           <Text style={styles.infoText}>
-            Atualmente estudo na Universidade Católica de Pernambuco (Unicap). 
-            Além dos projetos acadêmicos, participo ativamente de um grupo de 
-            pesquisa na área de tecnologia.
+            Me chamo Ana Beatriz Romero e atualmente estudo Ciência da Computação na Universidade Católica de Pernambuco (Unicap). 
+            Muitos dos projetos que desenvolvi foram para a faculdade, mas, além disso, também faço parte de um grupo de pesquisa.
           </Text>
         </View>
-
-        
-
-         
+ 
+        <View style={styles.contact}>
+          <Ionicons name="mail" size={20} color="#af216d" />
+          <Text style={styles.contactText}>anabia.romero@gmail.com</Text>
+        </View>
+ 
+         <View style={styles.socialLinks}>
+          <TouchableOpacity
+            style={styles.socialButton}
+            onPress={() => handleOpenURL('https://www.linkedin.com/in/ana-beatriz-romero-a15564274/')}
+          >
+            <FontAwesome name="linkedin-square" size={28} color="#af216d" />
+            <Text style={styles.socialText}>LinkedIn</Text>
+          </TouchableOpacity>
+ 
+          <TouchableOpacity
+            style={styles.socialButton}
+            onPress={() => handleOpenURL('https://github.com/Anabia-05')}
+          >
+            <FontAwesome name="github-square" size={28} color="#af216d" />
+            <Text style={styles.socialText}>GitHub</Text>
+          </TouchableOpacity>
+ 
+        </View>
       </View>
     </View>
     </SafeAreaView>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -49,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f6e3ea',
     padding: 24,
-    paddingTop: 20, 
+    paddingTop: 20,
   },
   header: {
     flexDirection: 'row',
@@ -95,10 +116,41 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   infoText: {
+    width: '90%',             
+    alignSelf: 'center',      
+    textAlign: 'justify',        
     fontSize: 16,
-    lineHeight: 24,
-    color: '#555',
-    textAlign: 'center',
+    lineHeight: 24,           
+    letterSpacing: 0.5,       
+    color: '#4a4a4a',
   },
+  socialLinks: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 30,
+    marginTop: 25,
+  },
+  socialButton: {
+    alignItems: 'center',
+    gap: 5,
+  },
+  socialText: {
+    color: '#555',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  contact: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 15,
+    marginBottom: 5, // Reduzi para aproximar dos ícones sociais
+  },
+ 
+  contactText: {
+    color: '#555',
+    fontSize: 16,
+  },
+
   
 });
