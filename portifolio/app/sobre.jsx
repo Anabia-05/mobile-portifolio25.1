@@ -18,7 +18,7 @@ export default function SobreMim() {
  
       <View style={styles.content}>
         <Image
-          source={require('@/assets/eu2.0.jpg')}
+          source={require('@/assets/images/eu2.0.jpg')}
           style={styles.profileImage}
         />
        
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#2d3436',
+    color: '#5d1049',
   },
   content: {
     alignItems: 'center',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#2d3436',
+    color: '#5d1049',
     marginBottom: 5,
   },
   role: {
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   socialText: {
-    color: '#555',
+    color: '#5d1049',
     fontSize: 14,
     fontWeight: '500',
   },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
  
   contactText: {
-    color: '#555',
+    color: '#5d1049',
     fontSize: 16,
   },
 

@@ -1,23 +1,24 @@
 // app/index.js
 import { Link } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
 
 export default function Home() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
         
         <View style={styles.header}>
           <Text style={styles.title}>Portfólio Digital</Text>
           <Text style={styles.subtitle}>Ana Beatriz Romero</Text>
         </View>
-      <View style={styles.infoBox}>
-        <Text style={styles.infoText}>
-          Bem vindo ao meu Portfólio	digital, clicando nos botões abaixo você pode encontrar mais informações sobre mim, minha experiencia academica/profissional e alguns de meus projetos.
-        </Text>
-      </View>  
-
+        <View style={styles.infoBox}>
+          <Text style={styles.infoText}>
+            Bem vindo ao meu Portfólio	digital, clicando nos botões abaixo você pode encontrar mais informações sobre mim, minha experiencia academica/profissional e alguns dos meus projetos e também o jogo da senha.
+          </Text>
+        </View>  
         
         <View style={styles.buttonGroup}>
           <Link href="./sobre" asChild>
@@ -26,9 +27,19 @@ export default function Home() {
               <Text style={styles.buttonText}>Sobre Mim</Text>
             </TouchableOpacity>
           </Link>
-
         </View>
+
+        <View style={styles.buttonGroup}>
+          <Link href="./experienciaP" asChild>
+            <TouchableOpacity style={styles.button2}>
+              <Ionicons name="briefcase" size={20} color="#af216d" />
+              <Text style={styles.button2Text}>Experiência Profissional</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+        
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -53,7 +64,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '700',
-    color: '#2d3436',
+    color: '#5d1049',
     marginBottom: 8,
   },
   subtitle: {
@@ -76,9 +87,25 @@ const styles = StyleSheet.create({
     gap: 10,
     elevation: 2,
   },
+  button2: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#af216d',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
   
   buttonText: {
     color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+    button2Text: {
+    color: '#af216d',
     fontSize: 16,
     fontWeight: '600',
   },
