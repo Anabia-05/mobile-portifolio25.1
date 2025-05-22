@@ -12,6 +12,11 @@ export default function Home() {
           <Text style={styles.title}>Portfólio Digital</Text>
           <Text style={styles.subtitle}>Ana Beatriz Romero</Text>
         </View>
+      <View style={styles.infoBox}>
+        <Text style={styles.infoText}>
+          Bem vindo ao meu Portfólio	digital, clicando nos botões abaixo você pode encontrar mais informações sobre mim, minha experiencia academica/profissional e alguns de meus projetos.
+        </Text>
+      </View>  
 
         
         <View style={styles.buttonGroup}>
@@ -76,6 +81,24 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
+  },
+
+  infoBox: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '100%',
+    marginBottom: 20,
+    elevation: 2,
+  },
+  infoText: {
+    width: '90%',             
+    alignSelf: 'center',      
+    textAlign: 'justify',        
+    fontSize: 16,
+    lineHeight: 24,           
+    letterSpacing: 0.5,       
+    color: '#4a4a4a',
   },
   
 });
