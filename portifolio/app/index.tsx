@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } fr
 import { Ionicons } from '@expo/vector-icons';
 
 
+
 export default function Home() {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -34,6 +35,14 @@ export default function Home() {
             <TouchableOpacity style={styles.button2}>
               <Ionicons name="briefcase" size={20} color="#af216d" />
               <Text style={styles.button2Text}>Experiência Profissional</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+        <View style={styles.buttonGroup}>
+          <Link href="./experienciaA" asChild>
+            <TouchableOpacity style={styles.button2}>
+              <Ionicons name="school" size={20} color="#af216d" />
+              <Text style={styles.button2Text}>Experiência Acadêmica</Text>
             </TouchableOpacity>
           </Link>
         </View>

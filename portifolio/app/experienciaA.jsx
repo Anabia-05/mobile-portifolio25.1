@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-n
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function ExperienciaP() {
+
+export default function ExperienciaA() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -11,31 +12,35 @@ export default function ExperienciaP() {
           <Link href="../" asChild>
             <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
           </Link>
-          <Text style={styles.title}>Experiência Profissional</Text>
+          <Text style={styles.title}>Experiência Acadêmica</Text>
         </View>
 
         
         <View style={styles.experienciaItem}>
-          <View style={styles.textContainer}>
-            <Text style={styles.cargo}>Pesquisadora de Graduação</Text>
-            <Text style={styles.empresa}>Grupo de Pesquisa em Redes e Telecomunicações (GPRT) • Set 2024 - Presente</Text>
+        <View style={styles.textContainer}>
+            <Text style={styles.cargo}>Estudante de Graduação</Text>
+            <Text style={styles.empresa}>Universidade Católica de Pernambuco (UNICAP) • 2022 - Presente</Text>
             <Text style={styles.descricao}>
-              Participação ativa em projetos de pesquisa envolvendo:
-              {"\n\n• "}Machine Learning aplicado a redes
-              {"\n• "}Ciência de Dados para otimização
-              {"\n• "}Desenvolvimento de soluções para problemas de desempenho
-              {"\n\n"}Habilidades técnicas adquiridas: NumPy, Pandas, Scikit-Learn, modelagem preditiva e técnicas de classificação.
+            Cursando o 5º período de Ciência da Computação com ênfase em:
+            {"\n\n• "}Desenvolvimento de Software
+            {"\n• "}Inteligência Artificial
+            {"\n• "}Redes de Computadores
+            {"\n\n"}Disciplinas relevantes:
+            {"\n• "}Algoritmos e Estrutura de Dados
+            {"\n• "}Inteligência Artificial
+            {"\n• "}Desenvolvimento Web e Mobile
+            {"\n• "}Redes de Computadores
             </Text>
-          </View>
+        </View>
         </View>
 
     
         <View style={styles.teamPhotoContainer}>
           <Image 
-            source={require('@/assets/images/equipe.jpeg')} 
+            source={require('@/assets/images/grupoIA.jpeg')} 
             style={styles.teamPhoto}
           />
-          <Text style={styles.photoCaption}>Equipe do GPRT - 2025</Text>
+          <Text style={styles.photoCaption}>Seminário IA - 2025</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
