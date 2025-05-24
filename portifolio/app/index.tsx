@@ -28,24 +28,31 @@ export default function Home() {
               <Text style={styles.buttonText}>Sobre Mim</Text>
             </TouchableOpacity>
           </Link>
-        </View>
-
-        <View style={styles.buttonGroup}>
+       
           <Link href="./experienciaP" asChild>
             <TouchableOpacity style={styles.button2}>
               <Ionicons name="briefcase" size={20} color="#af216d" />
               <Text style={styles.button2Text}>Experiência Profissional</Text>
             </TouchableOpacity>
           </Link>
-        </View>
-        <View style={styles.buttonGroup}>
+      
           <Link href="./experienciaA" asChild>
             <TouchableOpacity style={styles.button2}>
               <Ionicons name="school" size={20} color="#af216d" />
               <Text style={styles.button2Text}>Experiência Acadêmica</Text>
             </TouchableOpacity>
           </Link>
+
+          <Link href="./projetos" asChild>
+            <TouchableOpacity style={styles.button2}>
+              <Ionicons name="folder-open" size={20} color="#af216d" />
+              <Text style={styles.button2Text}>Projetos</Text>
+            </TouchableOpacity>
+          </Link>
+
         </View>
+
+        
         
       </View>
       </ScrollView>
