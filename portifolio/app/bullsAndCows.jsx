@@ -119,13 +119,13 @@ export default function BullsAndCowsGame() {
             >
               <Text style={dynamicStyles.secondaryButtonText}>Recomeçar</Text>
             </Pressable>
-            
             <Pressable
-              style={dynamicStyles.secondaryButtonText}
+              style={dynamicStyles.secondaryButton}
               onPress={showPassword}
             >
               <Text style={dynamicStyles.secondaryButtonText}>Mostrar Senha</Text>
             </Pressable>
+            
           </View>
 
           <FlatList
