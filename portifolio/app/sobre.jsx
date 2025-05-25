@@ -1,76 +1,74 @@
-import { View, Text, Image, StyleSheet, SafeAreaView, Linking, TouchableOpacity } from 'react-native';import { Link } from 'expo-router';
+import { View, Text, Image, StyleSheet, SafeAreaView, Linking, TouchableOpacity, useColorScheme } from 'react-native';
+import { Link } from 'expo-router';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
- 
+
 export default function SobreMim() {
-  const handleOpenURL = (url) => {
-    Linking.openURL(url).catch(err => console.error("Erro ao abrir link:", err));
-  };
- 
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const styles = createStyles(isDarkMode);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Link href="../" asChild>
-          <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
-        </Link>
-        <Text style={styles.title}>Sobre Mim</Text>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Link href="../" asChild>
+            <Ionicons name="arrow-back" size={24} color={isDarkMode ? '#e8c4d8' : '#af216d'} style={styles.backButton} />
+          </Link>
+          <Text style={styles.title}>Sobre Mim</Text>
+        </View>
+
+        <View style={styles.content}>
+          <Image
+            source={require('@/assets/images/eu2.0.jpg')}
+            style={styles.profileImage}
+          />
+         
+          <Text style={styles.name}>Ana Beatriz Romero</Text>
+          <Text style={styles.role}>Estudante de Ciência da Computação</Text>
+
+          <View style={styles.infoBox}>
+            <Text style={styles.infoText}>
+              Me chamo Ana Beatriz Romero e atualmente estudo Ciência da Computação na Universidade Católica de Pernambuco (Unicap). 
+              Muitos dos projetos que desenvolvi foram para a faculdade, mas, além disso, também faço parte de um grupo de pesquisa.
+            </Text>
+          </View>
+
+          <View style={styles.contact}>
+            <Ionicons name="mail" size={20} color={isDarkMode ? '#e8c4d8' : '#af216d'} />
+            <Text style={styles.contactText}>anabia.romero@gmail.com</Text>
+          </View>
+
+          <View style={styles.socialLinks}>
+            <TouchableOpacity
+              style={styles.socialButton}
+              onPress={() => Linking.openURL('https://www.linkedin.com/in/ana-beatriz-romero-a15564274/')}
+            >
+              <FontAwesome name="linkedin" size={28} color={isDarkMode ? '#e8c4d8' : '#af216d'} />
+              <Text style={styles.socialText}>LinkedIn</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.socialButton}
+              onPress={() => Linking.openURL('https://github.com/Anabia-05')}
+            >
+              <FontAwesome name="github" size={28} color={isDarkMode ? '#e8c4d8' : '#af216d'} />
+              <Text style={styles.socialText}>GitHub</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
- 
-      <View style={styles.content}>
-        <Image
-          source={require('@/assets/images/eu2.0.jpg')}
-          style={styles.profileImage}
-        />
-       
-        <Text style={styles.name}>Ana Beatriz Romero</Text>
-        <Text style={styles.role}>Estudante de Ciência da Computação</Text>
- 
-        <View style={styles.infoBox}>
-          <Text style={styles.infoText}>
-            Me chamo Ana Beatriz Romero e atualmente estudo Ciência da Computação na Universidade Católica de Pernambuco (Unicap). 
-            Muitos dos projetos que desenvolvi foram para a faculdade, mas, além disso, também faço parte de um grupo de pesquisa.
-          </Text>
-        </View>
- 
-        <View style={styles.contact}>
-          <Ionicons name="mail" size={20} color="#af216d" />
-          <Text style={styles.contactText}>anabia.romero@gmail.com</Text>
-        </View>
- 
-         <View style={styles.socialLinks}>
-          <TouchableOpacity
-            style={styles.socialButton}
-            onPress={() => handleOpenURL('https://www.linkedin.com/in/ana-beatriz-romero-a15564274/')}
-          >
-            <FontAwesome name="linkedin-square" size={28} color="#af216d" />
-            <Text style={styles.socialText}>LinkedIn</Text>
-          </TouchableOpacity>
- 
-          <TouchableOpacity
-            style={styles.socialButton}
-            onPress={() => handleOpenURL('https://github.com/Anabia-05')}
-          >
-            <FontAwesome name="github-square" size={28} color="#af216d" />
-            <Text style={styles.socialText}>GitHub</Text>
-          </TouchableOpacity>
- 
-        </View>
-      </View>
-    </View>
     </SafeAreaView>
   );
 }
- 
-const styles = StyleSheet.create({
+
+const createStyles = (isDarkMode) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
+    backgroundColor: isDarkMode ? '#121212' : '#f6e3ea',
   },
   container: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
     padding: 24,
-    paddingTop: 20,
   },
   header: {
     flexDirection: 'row',
@@ -84,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
   },
   content: {
     alignItems: 'center',
@@ -94,36 +92,44 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 75,
     borderWidth: 3,
-    borderColor: '#af216d',
+    borderColor: isDarkMode ? '#9c1a5b' : '#af216d',
     marginBottom: 20,
   },
   name: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
     marginBottom: 5,
   },
   role: {
     fontSize: 16,
-    color: '#af216d',
+    color: isDarkMode ? '#d8a8c8' : '#af216d',
     marginBottom: 30,
   },
   infoBox: {
-    backgroundColor: 'white',
+    backgroundColor: isDarkMode ? '#1e1e1e' : 'white',
     padding: 20,
     borderRadius: 10,
-    width: '100%',
-    marginBottom: 20,
+    borderWidth: isDarkMode ? 1 : 0,
+    borderColor: isDarkMode ? '#333' : 'transparent',
     elevation: 2,
   },
   infoText: {
-    width: '90%',             
-    alignSelf: 'center',      
-    textAlign: 'justify',        
     fontSize: 16,
-    lineHeight: 24,           
-    letterSpacing: 0.5,       
-    color: '#4a4a4a',
+    color: isDarkMode ? '#e0e0e0' : '#4a4a4a',
+    lineHeight: 24,
+    textAlign: 'justify',
+  },
+  contact: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 15,
+    marginBottom: 5,
+  },
+  contactText: {
+    color: isDarkMode ? '#e0e0e0' : '#5d1049',
+    fontSize: 16,
   },
   socialLinks: {
     flexDirection: 'row',
@@ -136,22 +142,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   socialText: {
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
     fontSize: 14,
     fontWeight: '500',
   },
-  contact: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginTop: 15,
-    marginBottom: 5, // Reduzi para aproximar dos ícones sociais
-  },
- 
-  contactText: {
-    color: '#5d1049',
-    fontSize: 16,
-  },
-
-  
 });

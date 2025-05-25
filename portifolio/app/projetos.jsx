@@ -1,9 +1,12 @@
 // app/projetos.js
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Linking, FlatList } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Linking, FlatList, useColorScheme } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Projetos() {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const styles = createStyles(isDarkMode);
   const projetos = [
     {
       id: '1',
@@ -55,39 +58,47 @@ export default function Projetos() {
       <View style={styles.container}>
         <View style={styles.header}>
           <Link href="../" asChild>
-            <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
+            <Ionicons name="arrow-back" size={24} color={isDarkMode ? '#e8c4d8' : '#af216d'} style={styles.backButton} />
           </Link>
           <Text style={styles.title}>Meus Projetos</Text>
         </View>
 
         <FlatList
           data={projetos}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.projetoCard}>
+              <Text style={styles.projetoTitulo}>{item.titulo}</Text>
+              <Text style={styles.projetoDescricao}>{item.descricao}</Text>
+              <TouchableOpacity 
+                style={styles.linkButton}
+                onPress={() => Linking.openURL(item.link)}
+              >
+                <Ionicons name="logo-github" size={18} color="white" />
+                <Text style={styles.linkText}>Acessar no GitHub</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           contentContainerStyle={styles.listContainer}
-          showsVerticalScrollIndicator={false}
         />
       </View>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (isDarkMode) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
+    backgroundColor: isDarkMode ? '#121212' : '#f6e3ea',
   },
   container: {
     flex: 1,
-    padding: 24,
-    paddingHorizontal: 20,
+    padding: 20,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 15,
-    paddingHorizontal: 5,
+    marginTop: 10,
   },
   backButton: {
     marginRight: 15,
@@ -95,40 +106,34 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
   },
   listContainer: {
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   projetoCard: {
-    backgroundColor: '#fff9fb',
+    backgroundColor: isDarkMode ? '#1e1e1e' : '#fff9fb',
     borderRadius: 10,
-    padding: 20,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#ffd6e7',
-    elevation: 2,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    padding: 15,
     marginBottom: 15,
+    borderWidth: 1,
+    borderColor: isDarkMode ? '#333' : '#ffd6e7',
   },
   projetoTitulo: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#5d1049',
-    marginLeft: 10,
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
+    marginBottom: 8,
   },
   projetoDescricao: {
     fontSize: 14,
-    color: '#4a4a4a',
+    color: isDarkMode ? '#e0e0e0' : '#4a4a4a',
     lineHeight: 20,
     marginBottom: 15,
   },
   linkButton: {
     flexDirection: 'row',
-    backgroundColor: '#af216d',
+    backgroundColor: isDarkMode ? '#9c1a5b' : '#af216d',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',

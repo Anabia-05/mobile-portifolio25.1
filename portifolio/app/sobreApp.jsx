@@ -1,50 +1,48 @@
-// app/index.js
 import { Link } from 'expo-router';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, useColorScheme } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+export default function SobreApp() {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const styles = createStyles(isDarkMode);
 
-
-export default function Home() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
-        
-        <View style={styles.header}>
+          <View style={styles.header}>
             <Link href="../" asChild>
-            <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
+              <Ionicons name="arrow-back" size={24} color={isDarkMode ? '#e8c4d8' : '#af216d'} style={styles.backButton} />
             </Link>
             <Text style={styles.title}>Sobre o App</Text>
+          </View>
+          
+          <View style={styles.infoBox}>
+            <Text style={styles.infoText}>
+              O app foi criado com:
+              {"\n\n• "}React Native, utilizando componentes como: View, Text, TextInput, Pressable, StyleSheet, Alert, FlatList, SafeAreaView, useColorScheme e ScrollView.
+              {"\n• "}Expo, incluindo também o Expo Router para navegação.
+              {"\n• "}Ionicons, para os ícones utilizados na interface.
+            </Text>
+          </View>
         </View>
-        
-        <View style={styles.infoBox}>
-          <Text style={styles.infoText}>
-            O app foi criado com:
-            {"\n\n• "}React Native, usando  View, Text, TextInput, Pressable, StyleSheet, Alert, FlatList,SafeAreaView,useColorScheme e ScroolView
-            {"\n• "}Expo, usando tambem expo route
-            {"\n• "}Ionicons, para os icones usados 
-          </Text>
-        </View>  
-        
-        
-      </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (isDarkMode) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
-    
+    backgroundColor: isDarkMode ? '#121212' : '#f6e3ea',
+  },
+  scrollContainer: {
+    flexGrow: 1,
   },
   container: {
     flex: 1,
     padding: 24,
-    justifyContent: 'center',
-    
   },
   header: {
     flexDirection: 'row',
@@ -58,22 +56,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
   },
-  
-
   infoBox: {
-    backgroundColor: 'white',
+    backgroundColor: isDarkMode ? '#1e1e1e' : 'white',
     padding: 20,
     borderRadius: 10,
-    width: '100%',
-    marginBottom: 20,
+    borderWidth: isDarkMode ? 1 : 0,
+    borderColor: isDarkMode ? '#333' : 'transparent',
     elevation: 2,
   },
   infoText: {
-    fontSize: 17,
-    color: '#4a4a4a',
-    lineHeight: 20,
+    fontSize: 16,
+    color: isDarkMode ? '#e0e0e0' : '#4a4a4a',
+    lineHeight: 24,
   },
-  
 });

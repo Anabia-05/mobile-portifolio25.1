@@ -1,16 +1,18 @@
-// app/experiencia.js
-import { View, Text, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, ScrollView, useColorScheme } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 
 export default function ExperienciaA() {
+  const colorScheme = useColorScheme();
+    const isDarkMode = colorScheme === 'dark';
+    const styles = createStyles(isDarkMode);
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           <Link href="../" asChild>
-            <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
+            <Ionicons name="arrow-back" size={24} color={isDarkMode ? '#e8c4d8' : '#af216d'} style={styles.backButton} />
           </Link>
           <Text style={styles.title}>Experiência Acadêmica</Text>
         </View>
@@ -47,10 +49,10 @@ export default function ExperienciaA() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (isDarkMode) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
+    backgroundColor: isDarkMode ? '#121212' : '#f6e3ea',
   },
   container: {
     flexGrow: 1,
@@ -69,46 +71,42 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
   },
   experienciaItem: {
-    backgroundColor: '#fff9fb',
+    backgroundColor: isDarkMode ? '#1e1e1e' : '#fff9fb',
     borderRadius: 10,
     padding: 15,
     marginBottom: 20,
-    flexDirection: 'row',
     borderWidth: 1,
-    borderColor: '#ffd6e7',
-    elevation: 2,
+    borderColor: isDarkMode ? '#333' : '#ffd6e7',
   },
-
   textContainer: {
     flex: 1,
   },
   cargo: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
     marginBottom: 3,
   },
   empresa: {
     fontSize: 14,
-    color: '#af216d',
+    color: isDarkMode ? '#d8a8c8' : '#af216d',
     marginBottom: 8,
     fontWeight: '500',
   },
   descricao: {
     fontSize: 14,
-    color: '#4a4a4a',
+    color: isDarkMode ? '#e0e0e0' : '#4a4a4a',
     lineHeight: 20,
   },
   teamPhotoContainer: {
-    alignItems: 'center',
-    padding: 15,
-    backgroundColor: '#fff9fb',
+    backgroundColor: isDarkMode ? '#1e1e1e' : '#fff9fb',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#ffd6e7',
+    borderColor: isDarkMode ? '#333' : '#ffd6e7',
+    padding: 15,
     marginTop: 10,
   },
   teamPhoto: {
@@ -120,7 +118,7 @@ const styles = StyleSheet.create({
   },
   photoCaption: {
     fontSize: 13,
-    color: '#7f8c8d',
+    color: isDarkMode ? '#a0a0a0' : '#7f8c8d',
     fontStyle: 'italic',
   },
 });
