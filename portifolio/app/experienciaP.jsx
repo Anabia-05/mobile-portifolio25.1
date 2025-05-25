@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flexGrow: 1,
-    padding: 20,
+    padding: 24,
     paddingBottom: 40,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 30,
-    marginTop: 10,
+    marginTop: 15,
   },
   backButton: {
     marginRight: 15,

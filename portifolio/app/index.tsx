@@ -49,6 +49,12 @@ export default function Home() {
               <Text style={styles.button2Text}>Projetos</Text>
             </TouchableOpacity>
           </Link>
+          <Link href="./bullsAndCows" asChild>
+            <TouchableOpacity style={styles.button2}>
+              <Ionicons name="game-controller-outline" size={20} color="#af216d" />
+              <Text style={styles.button2Text}>Jogo da Senha</Text>
+            </TouchableOpacity>
+          </Link>
 
         </View>
 

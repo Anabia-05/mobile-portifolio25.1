@@ -79,13 +79,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    padding: 24,
     paddingHorizontal: 20,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 10,
+    marginTop: 15,
     paddingHorizontal: 5,
   },
   backButton: {
