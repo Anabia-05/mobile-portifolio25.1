@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet, Alert, FlatList,SafeAreaView } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable, StyleSheet, Alert, FlatList,SafeAreaView,useColorScheme  } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function BullsAndCowsGame() {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
   const [password, setPassword] = useState('');
   const [attempts, setAttempts] = useState([]);
   const [attemptCount, setAttemptCount] = useState(0);
   const [userInput, setUserInput] = useState('');
  
+  const dynamicStyles = createStyles(isDarkMode);
 
   useEffect(() => {
     generatePassword();
@@ -73,8 +76,8 @@ export default function BullsAndCowsGame() {
   };
 
   const renderAttempt = ({ item, index }) => (
-    <View style={styles.attemptItem}>
-      <Text style={styles.attemptText}>
+    <View style={dynamicStyles.attemptItem}>
+      <Text style={dynamicStyles.attemptText}>
         Tentativa {attempts.length - index}: {item.attempt} | 
         Bulls: {item.result.bulls}, Cows: {item.result.cows}
       </Text>
@@ -82,46 +85,46 @@ export default function BullsAndCowsGame() {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.header}>
+    <SafeAreaView style={dynamicStyles.safeArea}>
+      <View style={dynamicStyles.container}>
+        <View style={dynamicStyles.header}>
           <Link href="../" asChild>
-            <Ionicons name="arrow-back" size={24} color="#af216d" style={styles.backButton} />
+            <Ionicons name="arrow-back" size={24} color={isDarkMode ? '#e8c4d8' : '#af216d'} style={dynamicStyles.backButton} />
           </Link>
-          <Text style={styles.title}>Bulls and Cows</Text>
+          <Text style={dynamicStyles.title}>Bulls and Cows</Text>
         </View>
 
-        <View style={styles.gameContainer}>
+        <View style={dynamicStyles.gameContainer}>
           <TextInput
-            style={styles.input}
+            style={dynamicStyles.input}
             value={userInput}
             onChangeText={setUserInput}
             placeholder="Digite 4 dígitos únicos"
-            placeholderTextColor="#7f8c8d"
+            placeholderTextColor={isDarkMode ? '#a0a0a0' : '#7f8c8d'}
             keyboardType="numeric"
             maxLength={4}
           />
 
-          <View style={styles.buttonGroup}>
+          <View style={dynamicStyles.buttonGroup}>
             <Pressable
-              style={styles.primaryButton}
+              style={dynamicStyles.primaryButton}
               onPress={startGame}
             >
-              <Text style={styles.buttonText}>Enviar Palpite</Text>
+              <Text style={dynamicStyles.buttonText}>Enviar Palpite</Text>
             </Pressable>
             
             <Pressable
-              style={styles.secondaryButton}
+              style={dynamicStyles.secondaryButton}
               onPress={generatePassword}
             >
-              <Text style={styles.secondaryButtonText}>Recomeçar</Text>
+              <Text style={dynamicStyles.secondaryButtonText}>Recomeçar</Text>
             </Pressable>
             
             <Pressable
-              style={styles.secondaryButton}
+              style={dynamicStyles.secondaryButtonText}
               onPress={showPassword}
             >
-              <Text style={styles.secondaryButtonText}>Mostrar Senha</Text>
+              <Text style={dynamicStyles.secondaryButtonText}>Mostrar Senha</Text>
             </Pressable>
           </View>
 
@@ -129,8 +132,8 @@ export default function BullsAndCowsGame() {
             data={[...attempts].reverse()}
             renderItem={renderAttempt}
             keyExtractor={(item, index) => index.toString()}
-            style={styles.attemptsList}
-            contentContainerStyle={styles.listContent}
+            style={dynamicStyles.attemptsList}
+            contentContainerStyle={dynamicStyles.listContent}
           />
         </View>
       </View>
@@ -138,10 +141,10 @@ export default function BullsAndCowsGame() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (isDarkMode) => StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f6e3ea',
+    backgroundColor: isDarkMode ? '#121212' : '#f6e3ea',
   },
   container: {
     flex: 1,
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 25,
-    marginTop: 25,
+    marginTop: 10,
   },
   backButton: {
     marginRight: 15,
@@ -159,60 +162,58 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#5d1049',
+    color: isDarkMode ? '#e8c4d8' : '#5d1049',
   },
   gameContainer: {
-    backgroundColor: '#fff9fb',
+    backgroundColor: isDarkMode ? '#1e1e1e' : '#fff9fb',
     borderRadius: 10,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#ffd6e7',
+    borderColor: isDarkMode ? '#333' : '#ffd6e7',
     elevation: 2,
     flex: 1,
   },
   input: {
     height: 50,
     borderWidth: 1,
-    borderColor: '#af216d',
+    borderColor: isDarkMode ? '#444' : '#af216d',
     borderRadius: 8,
     padding: 10,
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 20,
-    color: '#5d1049', // Texto escuro
-    backgroundColor: 'white',
+    color: isDarkMode ? '#f0f0f0' : '#5d1049',
+    backgroundColor: isDarkMode ? '#2a2a2a' : 'white',
   },
   buttonGroup: {
     marginBottom: 20,
   },
   primaryButton: {
-    backgroundColor: '#af216d',
+    backgroundColor: isDarkMode ? '#9c1a5b' : '#af216d',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
   },
   secondaryButton: {
-    backgroundColor: 'white',
+    backgroundColor: isDarkMode ? '#2a2a2a' : 'white',
     padding: 15,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#af216d',
+    borderColor: isDarkMode ? '#9c1a5b' : '#af216d',
     alignItems: 'center',
     marginBottom: 10,
   },
-
   buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
   },
   secondaryButtonText: {
-    color: '#af216d',
+    color: isDarkMode ? '#e8c4d8' : '#af216d',
     fontSize: 16,
     fontWeight: '600',
   },
-
   attemptsList: {
     flex: 1,
   },
@@ -220,15 +221,15 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   attemptItem: {
-    backgroundColor: 'white',
+    backgroundColor: isDarkMode ? '#2a2a2a' : 'white',
     padding: 12,
     marginBottom: 8,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#ffd6e7',
+    borderColor: isDarkMode ? '#333' : '#ffd6e7',
   },
   attemptText: {
     fontSize: 14,
-    color: '#4a4a4a',
+    color: isDarkMode ? '#e0e0e0' : '#4a4a4a',
   },
 });
